@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AdServe"
+           tests="3"
+           failures="0"
+           errors="0"
+           skipped="3"
+           time="0.014">
+  <properties />
+  
+            <testcase name="beforeClass" time="0.0" classname="projects.e2etest.LaunchE2ETest">
+          <skipped />
+    </testcase>
+            <testcase name="afterTest" time="0.0" classname="projects.e2etest.LaunchE2ETest">
+          <skipped />
+    </testcase>
+            <testcase name="launchTest" time="0.0" classname="projects.e2etest.LaunchE2ETest">
+          <skipped />
+    </testcase>
+  
+  
+</testsuite>

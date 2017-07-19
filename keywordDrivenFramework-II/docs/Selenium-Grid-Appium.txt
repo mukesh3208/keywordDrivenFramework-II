@@ -1,0 +1,68 @@
+Hosting Appium With Selenium Grid:
+References: 
+http://blog.zymr.com/configuring-appium-node-servers-with-selenium-grid
+https://discuss.appium.io/t/connecting-appium-server-to-selenium-grid-for-android/804/112
+
+1. Download selenium-server-standalone.jar and all machines to be registered as hub and nodes.
+
+2. On hub machine:
+java -jar ~/Downloads/selenium-server-standalone-2.52.0.jar -role hub
+
+3. On node machines:
+ java -jar ~/Downloads/selenium-server-standalone-2.52.0.jar -role node -hub http://172.16.0.97:4444/grid/register
+
+4. Create a node.json and start appium server with command: appium --nodeconfig ~/Desktop/node.json
+   Always register appium server with hub thats it.
+
+node.json Contents:
+{
+"capabilities":
+     [
+       {
+          "deviceName": "4df1db7568975f77",  ==> This no need to specify here, can be declared in testNG.xml 
+         "version":"4.4.2",
+         "maxInstances": 3,
+         "platformName":"ANDROID"
+       }
+     ],
+"configuration":
+{
+   "cleanUpCycle":2000,
+   "timeout":30000,
+   "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+   "url":"http://APPIUM_NODE_IP:4723/wd/hub",
+   "host": "APPIUM_NODE_IP",
+   "port": 4723,
+   "maxSession": 6,
+   "register": true,
+   "registerCycle": 5000,
+   "hubPort": 4444,
+   "hubHost": "HUB_IP"
+}
+}
+ 
+5. Sample testNg.xml for parallel tests:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Vdopia_Automation" parallel="tests">
+	
+	<test name="Test1">
+	<parameter name="deviceName" value="4d0025b440ca90d5" />
+		<classes>
+			<class name="poc.grid.GridTest" />
+		</classes>
+	</test>
+	
+	<test name="Test2">
+	<parameter name="deviceName" value="4df1db7568975f77" />
+		<classes>
+			<class name="poc.grid.GridTest" />
+		</classes>
+	</test>
+	
+</suite>
+                                    
+
+ 
+ 

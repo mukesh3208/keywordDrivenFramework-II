@@ -1,0 +1,238 @@
+*********** Working With UI Automator *************
+
+https://developer.android.com/tools/testing/testing_ui.html
+
+*********************** Appium Installation: ****************************************************    
+
+1. Install homebrew:
+
+     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+Uninstall home-brew:
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+
+2. Install node and npm:
+
+    brew install node
+
+3. Install appium:
+
+    npm install -g appium
+    
+To start the appium server, run:
+	appium
+	
+HOW TO FIX ERROR: ENOENT LSTAT NPM WHEN TRYING TO INSTALL MODULES
+
+npm cache clean  
+	
+error: uncaughtException: fn must be a function
+
+To fix this upgrade node or uninstall node and install node and appium again
+brew uninstall node
+brew upgrade node
+and then install npm again
+
+3a. install carthage using - brew install carthage
+
+4. ios-webkit-debug-proxy installation and use, refer: 
+https://github.com/penguinho/appium/blob/master/docs/en/advanced-concepts/ios-webkit-debug-proxy.md
+https://github.com/google/ios-webkit-debug-proxy
+https://github.com/jchuong/ios-webkit-debug-proxy
+
+Install ios-webkit-debug-proxy only in iOS to enable appium to switch to web view context.
+brew install ios-webkit-debug-proxy
+
+NOTE: the proxy requires the "web inspector" to be turned on to allow a connection to be established. Turn it on by going to settings > safari > advanced > web inspector - On. Please be aware that the web inspector was added as part of iOS 6 and was not available previously.
+
+5. ERROR: Could not connect to lockdownd, error code -21 --- to fix this on mac:
+sudo chmod -R 777 /var/db/lockdown/
+
+************************************** iOS **************************************************************************
+ 
+1. Appium start command from:
+/Users/user/Desktop/Appium_Setup/node-v0.10.28-darwin-x64/lib/node_modules/npm/bin    
+
+2. appium command can be executed from any location.
+3. appium -a 172.16.1.20 -p 4723 -U FFFFFFFFA413516D78E0400B808F59AD51DE601A       
+4. You'll need to authorize the use of the iOS simulator:  <Mac user has to enter password for authorizing>
+    authorize_ios
+5. Problem: ideviceinstaller: "Could not initialize ideviceinstaller"
+   Fix: brew install --HEAD ideviceinstaller
+6. Get all available devices and UDID: instruments -s devices
+7. if running on iOS simulator then make sure you have installed the same iOS simulator as selected platform version in appium.
+8. iOS 9 onwards, enable Settings —> Developer —> Enable UI Automation —> On, else face this problem via appium:
+   WebKit Threading Violation - initial use of WebKit from a secondary thread.
+   If you don’t see Developer option in Settings in iPhone then connect it to Xcode and Developer option will appear in Settings.
+9. Appium can’t navigate to web view context, to do that, ios-webkit-debug-proxy has to run with the test device on port - 27753
+   start ios-webkit-debug-proxy using command: ios_webkit_debug_proxy -c 2cb228a41da106345d46ee28063124d16999572b:27753 -d
+
+***** Command Line Build For XCode: ***********
+
+For Device:
+xcodebuild -project /Users/user/Desktop/Appium_Setup/Media_Player_Sample_App/Media_Player_Sample_App.xcodeproj -configuration “Debug” CONFIGURATION_BUILD_DIR=/Users/user/Desktop/TestBuild/iPhoneDevice ONLY_ACTIVE_ARCH=NO -sdk iphoneos PROVISIONING_PROFILE=/Users/user/Downloads/vdopiaProvisioning.mobileprovision
+
+xcodebuild -project /Users/user/Desktop/Appium_Setup/Media_Player_Sample_App/Media_Player_Sample_App.xcodeproj -configuration “Debug” CONFIGURATION_BUILD_DIR=/Users/user/Desktop/TestBuild/iPhoneDevice ONLY_ACTIVE_ARCH=NO -sdk iphoneos PROVISIONING_PROFILE=/Library/MobileDevice/Provisioning Profiles/vdopiaProvisioning.mobileprovision
+
+Working Command:
+xcodebuild -project /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/MediaPlayer/VdopiaMediaPlayerTest.xcodeproj -configuration “Debug” CONFIGURATION_BUILD_DIR=/Users/user/Desktop/TestBuild/iPhoneDevice ONLY_ACTIVE_ARCH=NO -sdk iphoneos 
+
+For Simulator:
+xcodebuild -project /Users/user/Desktop/Appium_Setup/Media_Player_Sample_App/Media_Player_Sample_App.xcodeproj -configuration “Debug” CONFIGURATION_BUILD_DIR=/Users/user/Desktop/TestBuild/iPhoneSimulator ONLY_ACTIVE_ARCH=NO -sdk iphonesimulator
+
+No Signing Identity - Avoid infinite loop upon installing app by appium:
+xcodebuild build -project ~/Desktop/AllFormats/Vdopia\ LW.xcodeproj/ -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator9.2
+
+How to create ipa file from archive file:
+1. First go to Xcode —> open product —> Product —> Archive
+and then :
+
+xcodebuild -exportArchive -exportFormat ipa -archivePath /Users/Pankaj/Library/Developer/Xcode/Archives/2016-02-22/VDOPIA_DEMO\ 22-02-16\,\ 1.04\ PM.xcarchive/ -exportPath ~/Desktop/Vdopia_Demo.ipa
+
+//*********************************************
+    
+***** Working PROVISIONING PROFILE: ***********
+
+xcodebuild -project /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/MediaPlayer/VdopiaMediaPlayerTest.xcodeproj -configuration "Debug" CONFIGURATION_BUILD_DIR=/Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/sdk_compiledfile/preroll_iPadDevice_06102014_112322 ONLY_ACTIVE_ARCH=NO 'platform=iOS,name=iPad' PROVISIONING_PROFILE=A61E36ED-5E05-47AA-A3CE-E6EA7CF4D870 CODE_SIGN_IDENTITY='iPhone Developer: Srikanth Kakani (8M2AZQ29AC)'
+
+xcodebuild -project /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/MediaPlayer/VdopiaMediaPlayerTest.xcodeproj -configuration "Debug" CONFIGURATION_BUILD_DIR=/Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/sdk_compiledfile/preroll_iPadDevice_06102014_112322 ONLY_ACTIVE_ARCH=NO 'platform=iOS,name=iPad' PROVISIONING_PROFILE=8E97F242-9CF0-4176-AC8B-63AFA3E00129 CODE_SIGN_IDENTITY='iPhone Developer: Srikanth Kakani (8M2AZQ29AC)'
+
+xcodebuild -project /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/MediaPlayer/VdopiaMediaPlayerTest.xcodeproj -configuration "Debug" CONFIGURATION_BUILD_DIR=/Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/sdk_compiledfile/preroll_iPadDevice_06102014_112322 ONLY_ACTIVE_ARCH=NO 'platform=iOS,name=iPad' PROVISIONING_PROFILE=016E8D36-3118-4DC8-ABF7-37C84550D0D3 CODE_SIGN_IDENTITY='iPhone Developer: Srikanth Kakani (8M2AZQ29AC)'
+
+***********************************************
+
+XCODE CLEAR CACHE: 
+
+Note:
+
+fatal error: file '/Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/LWSDK_New/test_App/test_App-Prefix.pch' has been modified since the precompiled header '/Users/user/Library/Developer/Xcode/DerivedData/test_App-gxngjmwrssiqmbglmxhvkaxobzqa/Build/Intermediates/PrecompiledHeaders/test_App-Prefix-domnpfmzitdwlefzdtjkdreznfge/test_App-Prefix.pch.pch' was built
+note: after modifying system headers, please delete the module cache at '/Users/user/Library/Developer/Xcode/DerivedData/ModuleCache/2EM4FVQIK3RXW'
+
+**************************************** ANDROID **************************************************************************
+
+Step 1 : Copy your project folder from Eclipse Workspace to the Desktop
+Step 2 : Create keystore file using keytool command
+
+keytool -genkey -v -keystore <file name="">.keystore -alias <alias name=""> -keyalg RSA -keysize 2048 -validity 365
+or
+keytool -genkey -alias androidSDKKey -keystore /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/android/MP_Sample_App/VdopiaMPSample/key.txt
+or
+Working Command:
+keytool -genkey -alias androidSDKKey -keystore /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/android/MP_Sample_App/VdopiaMPSample/androidsdk.keystore  -validity 365
+
+Step 3 : Copy keystore file in your project folder
+Step 4 : Create "ant.properties" file using any text editor, this file contain information about keystore file. 
+create your keystore file like:
+
+key.store=androidsdk.keystore
+key.alias=<alias name from command>
+key.store.password=kpbird
+key.alias.password=kpbird
+
+Step 4 : Create "default.properties" file, If you have created project using eclipse, this file will available, 
+If not create file with following content, change api level as per your project.
+
+# This file is automatically generated by Android Tools.
+# Do not modify this file -- YOUR CHANGES WILL BE ERASED!
+#
+# This file must *NOT* be checked in Version Control Systems,
+# as it contains information specific to your local configuration.
+# location of the SDK. This is only used by Ant
+# For customization when using a Version Control System, please read the
+# header note.
+sdk.dir=/Users/kpbird/android-sdk-macosx
+
+Step 6 : Create "build.xml" with following content, change project name "MyAndroidProject".
+
+<project default="help" name="MyAndroidProject">
+    <property file="local.properties">
+    <property file="ant.properties">
+    <loadproperties srcfile="project.properties">
+    <fail message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through an env var" unless="sdk.dir">
+    <import file="${sdk.dir}/tools/ant/build.xml"></import>
+</fail>
+</loadproperties></property></property></project>
+
+or 
+
+use this command to create build.xml, just go android-sdks/tools/ 
+./android update project -p /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/android/MP_Sample_App/VdopiaMPSample
+
+Step 6a : In case project is using other sub-projects then execute ./android update project -p <location> for each command to create build.xml for each sub-project.
+
+Step 7 : open terminal, go to the project folder and execute following command
+clean the build using this command: ant clean
+and then run this command to create apk file:	ant release
+
+Step 8 : Your APK file will be at following path.
+Project Folder -> bin -> MyAndroidProject-release.apk
+
+Step 9 : Install released apk using ant, execute below command from project location:
+ant installr -Dadb.device.arg="-s <Device_ID>“
+
+or 
+
+Install apk file using adb from android-sdk/plateform-tools:
+./adb -s <Device_Id> install ~/Desktop/VdopiaLWSDKSample/bin/MainActivity-release.apk
+
+Summary
+
+Create following files in your Project Folder and execute "ant release" command
+keystore
+ant.properties
+default.properties
+local.properties
+build.xml
+
+************************************** Get Package and Launchable Activity ***************
+
+1. /Users/user/android-sdks/platform-tools/adb shell pm list packages -f
+get output like: package:/data/app/com.vdopia.mp.sample-2.apk=com.vdopia.mp.sample
+
+2. /Users/user/android-sdks/platform-tools/adb pull data/app/com.vdopia.mp.sample-2.apk 
+
+3. /Users/user/android-sdks/build-tools/19.0.1/aapt dump badging com.vdopia.mp.sample-2.apk
+
+launchable-activity: name='com.vdopia.mp.sample.MainActivity'  label='Vdopia MP' icon=''
+
+*******************************************************************************************
+
+
+************************************** Change Password if key is not recovered ************
+
+#Change key store password:
+keytool -storepasswd -new vdopia123 -keystore /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/android/MP_Sample_App/VdopiaMPSample/key.txt
+
+#Change key alias password:
+ keytool -keypasswd -alias androidSDKKey -new vdopia123 -keystore /Users/user/Desktop/Automation/qascripting/Vdopia_Automation/tc_data/sdk/android/MP_Sample_App/VdopiaMPSample/key.txt
+
+******************************************************************************************
+
+
+******************************** LW SDK Android Cases: **************************************************************************
+
+-------------- BANNER -------------- 
+1. string for Banner with size <> 728x90 and <> 300x250: + Check fullscreenbanner =0
+2. string for Animated Banner with size <> 728x90 and <> 300x250: + Check fullscreenbanner =0
+
+-------------- IAB_LEADERBOARD  --------------
+1. LeaderVdo
+2. html ad format with size = 728x90
+3. Leader Banner (NORMAL Banner with size = 728x90)
+
+-------------- IAB_MRECT  --------------
+1. MRECT Banner, FOR BANNER HAVING size ==> 300x250,  fullscreenbanner=0 
+2. MRECT Banner, FOR ANIMATED BANNER HAVING size ==> 300x250,  fullscreenbanner=0
+3. MRECT Video --> Med Video without Expandable Banner
+
+-------------- EXPANDABLE_BANNER --------------
+1. Mini Video
+2. Med Video with Expandable Banner (For expandable check expandable = 1 in campaign table)
+3. Max Video with Expandable Banner (For expandable check expandable = 1 in campaign table)
+
+-------------- INTERSTITIAL ---------------
+1. Interstitial ==> coded
+2. Max Video without expandable banner (expandable = 0)
+3. Fullscreen Banner (Check fullscreenbanner=1 for banners only)
+
+************************************************************************************************************************************

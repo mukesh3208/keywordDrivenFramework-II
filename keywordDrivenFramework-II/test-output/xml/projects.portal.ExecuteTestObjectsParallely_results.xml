@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AdServe"
+           tests="3"
+           failures="0"
+           errors="0"
+           skipped="3"
+           time="0.003">
+  <properties />
+  
+            <testcase name="beforeClass" time="0.0" classname="projects.portal.ExecuteTestObjectsParallely">
+          <skipped />
+    </testcase>
+            <testcase name="afterClass" time="0.0" classname="projects.portal.ExecuteTestObjectsParallely">
+          <skipped />
+    </testcase>
+            <testcase name="runTests" time="0.0" classname="projects.portal.ExecuteTestObjectsParallely">
+          <skipped />
+    </testcase>
+  
+  
+</testsuite>

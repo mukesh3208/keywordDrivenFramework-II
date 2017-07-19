@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Automation]">
+  <parameter name="browser" value="Chrome"/>
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test name="AdServe">
+    <classes>
+      <class name="projects.TestSuiteClass"/>
+      <class name="projects.portal.ExecuteTestObjectsParallely"/>
+    </classes>
+  </test> <!-- AdServe -->
+  <test name="AdServe(failed)">
+    <classes>
+      <class name="projects.portal.ExecuteTestObjectsParallely">
+        <methods>
+          <include name="runTests"/>
+        </methods>
+      </class> <!-- projects.portal.ExecuteTestObjectsParallely -->
+    </classes>
+  </test> <!-- AdServe(failed) -->
+</suite> <!-- Failed suite [Automation] -->

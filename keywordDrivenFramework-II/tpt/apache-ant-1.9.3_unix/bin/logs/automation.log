@@ -1,0 +1,24 @@
+2017-06-29 17:09:31,494 INFO  vlib.FileLib CreateDirectory - null : Directory: /Users/Pankaj/Desktop/qaAutomation/qascripting/Vdopia_Automation/logs already exists.
+
+2017-06-29 17:09:31,499 INFO  projects.TestSuiteClass beforeSuite - Main Result Folder doesn't exist at /Users/Pankaj/Desktop/qaAutomation/qascripting/Vdopia_Automation/results/Main_Result_06292017_050931
+
+2017-06-29 17:09:31,499 INFO  projects.TestSuiteClass beforeSuite - Main Result folder is created successfully 
+
+2017-06-29 17:09:31,500 INFO  projects.TestSuiteClass beforeSuite - Main Result file location : /Users/Pankaj/Desktop/qaAutomation/qascripting/Vdopia_Automation/results/Main_Result_06292017_050931/Main_Result_06292017_050931.xls
+
+2017-06-29 17:09:34,358 INFO  projects.grid.NodeSetupLib startSeleniumGridNode - running sql -- select id, IFNULL(hub_url,'') AS hub_url, IFNULL(node_url,'') AS node_url, IFNULL(node_register_url, '') AS node_register_url  from gridstatus where hub_status = 'active' order by date desc limit 1; 
+
+2017-06-29 17:09:34,654 INFO  projects.grid.NodeSetupLib startSeleniumGridNode - starting node ---- 
+
+2017-06-29 17:09:34,655 INFO  projects.grid.NodeSetupLib startSeleniumGridNode - java.lang.ThreadLocal@7a4ccb53 :  Starting node via - java -jar /Users/PankajDesktop/qaAutomation/qascripting/Vdopia_Automation\tpt\selenium-server\selenium-server-standalone-2.53.0.jar  -role node -hub http://172.16.0.124:4444/grid/register/ -Dwebdriver.chrome.driver=/Users/Pankaj/Desktop/qaAutomation/qascripting/Vdopia_Automation\tpt\chromedriver & 
+
+2017-06-29 17:09:45,236 INFO  projects.adserve.mobileAdServe.lib.MobileAdServingUtilsLib cleanProcesses - null : Running command to close Chromedriver instance if any remaining:
+
+2017-06-29 17:09:45,236 INFO  projects.adserve.mobileAdServe.lib.MobileAdServingUtilsLib cleanProcesses - killall chromedriver
+
+2017-06-29 17:09:45,284 INFO  projects.TestSuiteClass afterSuite - ###################################################################
+
+2017-06-29 17:09:45,285 INFO  projects.TestSuiteClass afterSuite - ******* Test End Time ********: 06292017_050945
+
+2017-06-29 17:09:45,285 INFO  projects.TestSuiteClass afterSuite - ###################################################################
+

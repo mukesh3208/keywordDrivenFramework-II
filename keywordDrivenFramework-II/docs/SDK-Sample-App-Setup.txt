@@ -1,0 +1,39 @@
+
+A). ALWAYS HAVE THE LATEST JAR vdopiampsdk.jar AND vdopialwsdk.jar.
+
+B). LW SDK ANDROID:
+
+1. Change the app resolver url in file: ../LW_Sample_App/VdopiaLWSDKSample/src/com/vdopia/lwsdk/sample/BannerActivity.java
+Just add line: LVDOAdUtil.changeAppResolverUrl("serve.qa.vdopia.com"); 
+
+After below method:
+
+@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);		
+		
+2. Change below values in file VdopiaLWSDKSample/project.properties
+android.library.reference.1=../google-play-services_lib
+android.library.reference.2=../appcompat
+
+
+C). MP SDK ANDROID:
+
+1. Have mp sdk jar at: ../MP_Sample_App/VdopiaMPSample/libs/vdopiampsdk.jar
+
+2. MP SDK also uses google-play-services_lib project, update the location of this project in 
+../MP_Sample_App/VdopiaMPSample/project.properties like:
+Comment this line # android.library.reference.1=..\\..\\google-play-services_lib
+and change to:
+android.library.reference.1=../../google-play-services_lib
+
+3. Api keys are changed in MainActivity.java file, so far automation code does that.
+
+D). Write this line: LVDOAdWebView.setWebContentsDebuggingEnabled(true);
+below this code:
+ @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        in file MainActivity.java -- to enable webview in debugging mode.

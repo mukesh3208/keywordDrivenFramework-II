@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AdServe"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.365">
+  <properties />
+  
+  
+            <testcase name="test2" time="0.365" classname="projects.portal.TestClass" />
+      
+</testsuite>

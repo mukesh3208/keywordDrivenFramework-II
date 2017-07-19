@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="1" failed="0" total="1" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Vdopia_Automation" duration-ms="154" started-at="2017-02-24T11:45:54Z" finished-at="2017-02-24T11:45:54Z">
+    <groups>
+    </groups>
+    <test name="AdServe" duration-ms="154" started-at="2017-02-24T11:45:54Z" finished-at="2017-02-24T11:45:54Z">
+      <class name="projects.e2etest.LaunchE2ETest">
+        <test-method status="SKIP" signature="beforeClass()[pri:0, instance:projects.e2etest.LaunchE2ETest@6f195bc3]" name="beforeClass" is-config="true" duration-ms="0" started-at="2017-02-24T17:15:54Z" finished-at="2017-02-24T17:15:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="SKIP" signature="launchTest()[pri:0, instance:projects.e2etest.LaunchE2ETest@6f195bc3]" name="launchTest" duration-ms="14" started-at="2017-02-24T17:15:54Z" finished-at="2017-02-24T17:15:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchTest -->
+        <test-method status="SKIP" signature="afterTest()[pri:0, instance:projects.e2etest.LaunchE2ETest@6f195bc3]" name="afterTest" is-config="true" duration-ms="0" started-at="2017-02-24T17:15:54Z" finished-at="2017-02-24T17:15:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- projects.e2etest.LaunchE2ETest -->
+      <class name="projects.TestSuiteClass">
+        <test-method status="FAIL" signature="beforeSuite(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:projects.TestSuiteClass@7a187f14]" name="beforeSuite" is-config="true" duration-ms="0" started-at="2017-02-24T17:15:53Z" finished-at="2017-02-24T17:15:53Z">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'logFileLocation' is required by @Configuration on method beforeSuite but has not been marked @Optional or defined
+in /Users/Pankaj/Desktop/qaAutomation/qascripting/Vdopia_Automation/exe/testng_gui.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'logFileLocation' is required by @Configuration on method beforeSuite but has not been marked @Optional or defined
+in /Users/Pankaj/Desktop/qaAutomation/qascripting/Vdopia_Automation/exe/testng_gui.xml
+	at org.testng.internal.Parameters.createParameters(Parameters.java:154)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:361)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:84)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:201)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:113)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:206)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:177)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="SKIP" signature="afterSuite()[pri:0, instance:projects.TestSuiteClass@7a187f14]" name="afterSuite" is-config="true" duration-ms="0" started-at="2017-02-24T17:15:59Z" finished-at="2017-02-24T17:15:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- projects.TestSuiteClass -->
+    </test> <!-- AdServe -->
+  </suite> <!-- Vdopia_Automation -->
+</testng-results>
